@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS Application</title>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+     <link href="style.css" rel="stylesheet" type="text/css">
+     <link href="bootstrap.min.css" rel="stylesheet" media="screen">  
+     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+       
+    <script data-require="angular.js@1.0.x" src="http://code.angularjs.org/1.0.7/angular.min.js" data-semver="1.0.7"></script>
+    <script src="Angular.js"></script> 
+  </head>
+
+  <body>
+    <div ng-controller="jsonCtrl">
+    <h1>Reading external Json file</h1>
+    <h2>Total Employees {{ getTotalRecord() }}</h2>
+    
+        <label class="SearchLabel">Search by State</label>    <input type="text" ng-model="search.state" class="txt">
+        <label class="SearchLabel">Search by First Name</label>    <input type="text" ng-model="first.first_name" class="txt">
+        <label class="SearchLabel">Search by Last Name</label>  <input type="text" ng-model="last.last_name" class="txt">
+        
+        
+    <table class="table table-striped">
+    <tr>
+                <th>Address</th>
+                <th>City</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Joining Date</th>
+                <th>Last Name</th>
+                <th>Phone</th>
+                <th>State</th>
+                <th>Zip</th>
+            </tr>
+    <tr ng-repeat="resource in manager | startFrom:currentPage*pageSize | limitTo:pageSize | filter:search | filter:first | filter:last | orderBy:'state'"> 
+			<td>{{ resource.address }}</td>
+			<td>{{ resource.city }}</td>
+			<td>{{ resource.email }}</td>
+			<td> <a ng-href="#" ng-click="enableEditor(resource)">{{ resource.first_name }}</a></td>
+			<td>{{ resource.join_date }}</td>
+			<td>{{ resource.last_name }}</td>
+			<td>{{ resource.phone }}</td>
+			<td>{{ resource.state }}</td>
+			<td>{{resource.zip}}</td>
+        </tr>    
+    </table>
+    <button class="btn" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+            Previous
+        </button>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <button class="btn" ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+        </button>
+        Page Size
+        <input class="txt" type="number" name="input" value="10" ng-model="pageSize" min="10" max="50" required />
+        
+        
+        <div ng-show="editorE">
+      {{title}}
+    </div>
+
+     <div ng-show="editorE">
+      <li> Address: {{ resource.address }}</li>
+		<li>City:  {{ resource.city }}</li>
+		<li>Email: {{ resource.email }}</li>
+        <li>First Name: {{resource.first_name}}</li>
+		<li>Joining-date: {{ resource.join_date }}</li>
+		<li>Last Name: {{ resource.last_name }}</li>
+		<li>Phone: {{ resource.phone }}</li>
+		<li>State: {{ resource.state }}</li>
+		<li>Zip: {{resource.zip}}</li>
+      
+    </div>
+  </div>
+  
+  </body>
+
+</html>

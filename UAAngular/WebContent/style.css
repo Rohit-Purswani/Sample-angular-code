@@ -1,0 +1,17 @@
+.SearchLabel{
+	font-family: 'Oswald', sans-serif;
+	font-size:12px;
+	font-weight:Bold;
+}
+.txt{
+font-family: 'Oswald', sans-serif;
+	font-size:12px;
+	
+}
+.btn{
+	font-family: 'Oswald', sans-serif;
+	font-size:12px;
+	font-weight:Bold;
+	Margin:12,12,12,12;
+	Style:5px corner radius;
+}
